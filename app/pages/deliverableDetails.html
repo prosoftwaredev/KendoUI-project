@@ -1,0 +1,170 @@
+<link rel="stylesheet" href="css/deliverableView.css" />
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <h1>
+        My Deliverables
+        <small>Deliverable detail</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-file-text-o"></i>Deliverables</a></li>
+        <li class="active">Details</li>
+    </ol>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+    <div class="box">
+        <div class="row">
+            <div class="col-sm-4">
+                <div data-role="toolbar">
+                    <button data-role='button' data-icon="edit" data-bind='click: editDetails, visible: isEditable'>Edit</button>
+                    <button data-role='button' data-icon="preview" data-bind='click: viewDetails, visible: isEditMode'>View</button>
+                    <button data-role='button' data-icon="plus" data-bind="click: addComment, visible: isCommentable">Add Comment</button>
+                </div>
+                <div id="sections-list"></div>
+            </div>
+            <div class="col-sm-8">
+                <div data-role="toolbar">
+                    <button data-role='button' data-icon="check" data-bind='click: saveDetails, visible: isEditMode'>Save</button>
+                    <button data-role='button' data-icon="close" data-bind='click: cancelDetails, visible: isEditMode'>Discard</button>
+                </div>
+                <div data-bind='visible: isEditMode'>
+                    <textarea id="editor"></textarea>
+                </div>
+                <div data-bind='visible: isViewMode'>
+                    <div class="col-sm-8">
+                        <div id="text-container">
+                        </div>
+                    </div>
+                    <div class="col-sm-4 notifications-container">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <div class="row">
+            <div id="details-tabstrip">
+                <ul>
+                    <li class="k-state-active">Attachments</li>
+                    <li>Comments</li>
+                    <li>Revisions</li>
+                    <li>Impact Analysis</li>
+                    <li>Variables</li>
+                    <li>Logs</li>
+                    <li>Contributors</li>
+                </ul>
+                <div>
+                    <div class='row'>
+                        <div class="col-sm-8">
+                            <div id="attachments-list"></div>
+                        </div>
+                        <div class="col-sm-3">
+                            <div class="dropZoneElement" data-bind='visible: isEditMode'>
+                                <div class="textWrapper">
+                                    <p><span>+</span>Add File</p>
+                                    <p class="dropImageHereText">Drop file here to upload</p>
+                                    <input name="files" id="files" type="file" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div id="comments-table"></div>
+                </div>
+                <div>
+                    <div id="revisions-table"></div>
+                </div>
+                <div>
+                    <div id="impact-analysis-table"></div>
+                </div>
+                <div>
+                    <div id="variables-table"></div>
+                </div>
+                <div>
+                    <div id="logs-table"></div>
+                </div>
+                <div>
+                    <div id="contributors-table"></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="addNewSectionDialog" data-role="window" data-title="Add new Section" data-width="550" data-actions="{}" data-height="250"
+            data-bind="visible: showAddNewSectionDialog" data-position="{top: '20%', left: '30%'}">
+
+            <div class='row'>
+                <div class='col-sm-12' data-bind='text: addSectionHelpText'></div>
+            </div>
+            <div style='height: 25px;'></div>
+            <div class='row'>
+                <div class='col-sm-12'>
+                    <input id="sectionAutoComplete" data-role='autocomplete' data-placeholder="Type a Section name" data-bind='source: deliverableSections, value: newSection'
+                        data-text-field='name' data-value-field='id' />
+                </div>
+            </div>
+            <div style='height: 25px;'></div>
+            <div class='row'>
+                <div class='col-sm-12'>
+                    <button data-role='button' data-bind='click: addNewSection'>Add Section</button>
+                    <button data-role='button' data-bind='click: closeAddSectionDialog'>Close Window</button>
+                </div>
+            </div>
+        </div>
+
+        <span id="comment-notificaiton"></span>
+    </div>
+</section>
+<!-- /.content -->
+<script src="js/datamodels/SectionsListDataModel.js"></script>
+<script src="js/controllers/DeliverableDetailsController.js"></script>
+<script src="js/ckfinder/ckfinder.js"></script>
+<script src="js/ckeditor/ckeditor.js"></script>
+<script type="text/x-kendo-template" id="attachments-template">
+    <div class="attachment-item">
+        <div class="image-container">
+            <img src="#: getFileType(extension) #" alt="File Icon" style="width:64px;height:64px;">
+            <span>
+            <button class='k-button attachment-button open'>Open</button>
+            <button class='k-button attachment-button edit' data-bind='visible: isEditMode'>Edit</button>
+            <button class='k-button attachment-button delete' data-bind='visible: isEditMode'>Delete</button>
+      </span>
+        </div>
+
+        <div class="attachments-text" title="#: name #">#: name #</div>
+        <div class="attachments-text">#: kendo.toString(size / 1024, "n0")#kb</div>
+        <div class="attachments-text">#: kendo.toString(new Date(creationDate), "d")  #</div>
+    </div>
+</script>
+
+<script type="text/x-kendo-template" id="users-template">
+    <div>
+        <span class='k-state-default'>
+            <img src='images/navbar/avatar/#: data.avatar #' class='imgavatar'>
+            </img> #: data.name # #: data.firstname #
+        </span>
+    </div>
+</script>
+
+
+<script>
+    CKEDITOR.dtd.$removeEmpty.i = 0;
+    CKEDITOR.dtd.$removeEmpty.span = 0;
+    var editor = CKEDITOR.replace('editor', {
+        removeButtons: 'Source,Flash,Iframe,Templates',
+        skin: 'office2013',
+        allowedContent: true,
+        //extraAllowedContent: 'div{*}',
+        extraPlugins: 'bgimage,floating-tools,allowsave,notification,autoembed,autocorrect,chart,footnotes,docprops,leaflet,numericinput,quicktable,xml,texttransform,tabletools,tag,comment,uploadimage,template',//autosave,btbutton,SimpleLink',
+        // extraPlugins: 'template'
+        // contentsCss: [
+        //   'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+        //   'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+        // ],
+        // fullPage: true
+    });
+    //var data = CKEDITOR.instances.editor.getData();
+
+    CKFinder.setupCKEditor(editor, '/tcon/ckfinder/');
+
+</script>

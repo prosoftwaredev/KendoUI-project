@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.common.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.default.min.css" />
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/2017.1.223/styles/kendo.default.mobile.min.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2017.1.223/js/kendo.all.min.js"></script>
+</head>
+<body>
+<div id="example">
+    <div id="diagram"></div>
+    <script>
+        var data = [{
+            firstName: "Antonio",
+            lastName: "Moreno",
+            image: "antonio.jpg",
+            title: "Team Lead",
+            colorScheme: "#E4FF9E",
+            items: [{
+                firstName: "Elizabeth",
+                image: "elizabeth.jpg",
+                lastName: "Brown",
+                title: "Design Lead",
+                colorScheme: "#E02130",
+                items: [{
+                    firstName: "Ann",
+                    lastName: "Devon",
+                    image: "ann.jpg",
+                    title: "UI Designer",
+                    colorScheme: "#E02130"
+                }]
+            }, {
+                firstName: "Diego",
+                lastName: "Roel",
+                image: "diego.jpg",
+                title: "QA Engineer",
+                colorScheme: "#2D959E",
+                items: [{
+                    firstName: "Fran",
+                    lastName: "Wilson",
+                    image: "fran.jpg",
+                    title: "QA Intern",
+                    colorScheme: "#2D959E"
+                }]
+            }, {
+                firstName: "Felipe",
+                lastName: "Izquiedro",
+                image: "felipe.jpg",
+                title: "Senior Developer",
+                colorScheme: "#429867",
+                items: [{
+                    firstName: "Daniel",
+                    lastName: "Tonini",
+                    image: "daniel.jpg",
+                    title: "Developer",
+                    colorScheme: "#429867"
+                }]
+            }]
+        }];
+
+        function visualTemplate(options) {
+            var dataviz = kendo.dataviz;
+            var g = new dataviz.diagram.Group();
+            var dataItem = options.dataItem;
+
+            g.append(new dataviz.diagram.Rectangle({
+                width: 210,
+                height: 75,
+                stroke: {
+                    width: 0
+                },
+                fill: {
+                    gradient: {
+                        type: "linear",
+                        stops: [{
+                            color: dataItem.colorScheme,
+                            offset: 0,
+                            opacity: 0.5
+                        }, {
+                            color: dataItem.colorScheme,
+                            offset: 1,
+                            opacity: 1
+                        }]
+                    }
+                }
+            }));
+
+            g.append(new dataviz.diagram.TextBlock({
+                text: dataItem.firstName + " " + dataItem.lastName,
+                x: 85,
+                y: 20,
+                fill: "#fff"
+            }));
+
+            g.append(new dataviz.diagram.TextBlock({
+                text: dataItem.title,
+                x: 85,
+                y: 40,
+                fill: "#fff"
+            }));
+
+            g.append(new dataviz.diagram.Image({
+                source: "http://demos.telerik.com/kendo-ui/content/dataviz/diagram/people/" + dataItem.image,
+                x: 3,
+                y: 3,
+                width: 68,
+                height: 68
+            }));
+
+            return g;
+        }
+
+        function createDiagram() {
+            $("#diagram").kendoDiagram({
+                dataSource: new kendo.data.HierarchicalDataSource({
+                    data: data,
+                    schema: {
+                        model: {
+                            children: "items"
+                        }
+                    }
+                }),
+                layout: {
+                    type: "layered"
+                },
+                shapeDefaults: {
+                    visual: visualTemplate
+                },
+                connectionDefaults: {
+                    stroke: {
+                        color: "#979797",
+                        width: 2
+                    }
+                }
+            });
+
+            var diagram = $("#diagram").getKendoDiagram();
+            diagram.bringIntoView(diagram.shapes);
+        }
+
+        $(document).ready(createDiagram);
+    </script>
+</div>
+
+
+</body>
+</html>

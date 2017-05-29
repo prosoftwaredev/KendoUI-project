@@ -1,0 +1,115 @@
+[
+    {
+        "id": 1,
+        "text": "<b>A. Checklist</b><br><br><p>If you are applying for a CSI rebate, please check the appropriate box below and continue with this application</p><br><ul style='list-style-type: disc;'><li>I am also applying for a CSI rebate, and understand that I will have to apply for CSI rebates separately.</li><li>I am also applying for a NSHP rebate, and understand that I will have to apply for the NSHP rebates separately.</li></ul><br><p>Description of Service (this Agreement is being filed for, check all that apply):</p><br><ul style='list-style-type: disc;'><li>A New NEM Generating Facility interconnection (at an existing service).</li><li>For Physical Changes to an interconnected Generating Facility with previous approval by PG&E (adding PV panels, changing inverters/turbines or changing load and/or operations).</li><li>A New interconnection in conjunction with a new service.</li><li>An Application for Service must be completed. Additional fees may be required if a service or line extension is required (in accordance with PG&E Electric Rules 15 and 16). Please contact PG&E at 1-800- PGE-5000. An Interconnection under Direct Access (DA).</li><li>Customers applying for NEM who are served under Direct Access by an Energy Service Provider (ESP) must contact their ESP directly for information regarding the ESP’s net energy metering program.</li><li>An Interconnection under Community Choice Aggregation Service (CCA Service).</li><li>Customers applying for NEM who are served under Community Choice Aggregation Service by a Community Choice Aggregator (CCA) must contact their CCA directly for information regarding the CCA’s net energy metering program.</li><li>An interconnected Generating Facility that never exports electricity to PG&E (load always exceeds generation).</li></ul><br><b>B. Customer Generating Facility Information - Where will the Generating Facility be installed?</b><br><br><p>77 Beale Street, San Francisco</p><br><ul style='list-style-type: disc;'><li>Name</li><li>#PG&E account number</li><li>#Meter ID</li><li>Address</li><li>Phone</li><li>Fax</li><li>Email</li></ul><br><b>C. Contractor Information</b><br><br><ul style='list-style-type: disc;'><li>Name</li><li>Company</li><li>Address</li><li>Phone</li><li>Fax</li><li>Email</li></ul><br><br><b>D. Cont’d – Requirements for Interconnection</b><br><br><p>Information regarding any existing insurance coverage (liability and/or property) for the Schedule-NEM Generating Facility location Customer shall meet all applicable safety and performance standards established by the National Electrical Code, the Institute of Electrical and Electronics Engineers, accredited testing laboratories such as Underwriters Laboratories and, where applicable, rules of the California Public Utilities Commission regarding safety and reliability. A Customer with a solar or wind-turbine electrical generating system, or a hybrid system of both, that meets those standards and rules shall not be required to install additional controls, perform or pay for additional tests, or purchase additional liability insurance. To the extent that Customer has currently in force property insurance and commercial general liability or personal liability insurance, Customer agrees that it will maintain such insurance in force for the duration of this Agreement in no less amounts than those currently in effect. Pacific Gas and Electric Company shall have the right to inspect or obtain a copy of the original policy or policies of insurance prior to commencing operation. As long as Customer meets the requirements of this section, Customer shall not be required to purchase any additional liability insurance.</p><br><p>I have insurance. I hereby certify that there is presently insurance coverage in the amount of $_#insurance______________ for the Schedule-NEM Generating Facility location. Insuring Company’s Name: _________________________________________________ Insurance Policy #_________________________________________________</p><br><p>I do not have insurance. I hereby certify that there is presently $0 (zero) dollars of insurance for the Schedule-NEM Generating Facility location.</p>",
+        "attachments": [
+            {
+                "name": "Attachment 1",
+                "size": "500kb",
+                "date": "27/03/2016",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 2",
+                "size": "610kb",
+                "date": "03/04/2016",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 3",
+                "size": "702kb",
+                "date": "12/12/2015",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "text": "A letter of acknowledgment was emailed on April 8 2017 to the following contact information <a href='mailto:ohamdi@tconglobal.com'>ohamdi@tconglobal.com</a>",
+        "attachments": [
+            {
+                "name": "Attachment 4",
+                "size": "1230kb",
+                "date": "31/03/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 4",
+                "size": "123kb",
+                "date": "04/04/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    },
+	{
+        "id": 3,
+        "text": "<b>Initial Review Process for Applications to Interconnect Generating Facilities</b><br><b>Checklist</b><br><br><p>Question1 : Is the point of common coupling (PCC) on a networked secondary system?</p><br><ul style='list-style-type: disc;'><li>If Yes, the distributed generation (DG) does not qualify for simplified interconnection. Perform a supplemental review.</li><li>If No, continue to the next screen.</li></ul><br><p>Question 2: Will power be exported across the PCC?</p><br><ul style='list-style-type: disc;'><li>If Yes, the DG does not qualify for a simplified interconnection. Perform a supplemental review.</li><li>If No, the DG must incorporate one of the following four options:<ul style='list-style-type: square;margin-left:10px;'><li>Option 1 To ensure that power is never exported, a reverse-power protective function must be implemented at the PCC. The default setting must be 0.1 % (export) of the transformer rating, with a maximum time delay of 2 seconds.</li><li>Option 2 To ensure at least a minimum import of power, an under-power protective function must be implemented at the PCC. The default setting must be 5 % (import) of the DG gross nameplate rating, with a maximum time delay of 2 seconds</li></ul></li></ul><br><p>Question 3: Is the interconnection equipment certified for the application or does the interconnection equipment have PG&E’s distribution system interim approval?</p><br><ul style='list-style-type: disc;'><li>If Yes, continue to the next screen.</li><li>If No, the DG does not qualify for simplified interconnection. Perform a supplemental review.</li></ul>",
+        "attachments": [
+            {
+                "name": "Attachment 4",
+                "size": "1230kb",
+                "date": "31/03/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 4",
+                "size": "123kb",
+                "date": "04/04/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    },
+	{
+        "id": 4,
+        "text": "",
+        "attachments": [
+            {
+                "name": "Attachment 4",
+                "size": "1230kb",
+                "date": "31/03/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 4",
+                "size": "123kb",
+                "date": "04/04/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    },{
+        "id": 5,
+        "text": "",
+        "attachments": [
+            {
+                "name": "Attachment 4",
+                "size": "1230kb",
+                "date": "31/03/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 4",
+                "size": "123kb",
+                "date": "04/04/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    },
+	{
+        "id": 6,
+        "text": "<p>After a review of the 145 kW photovoltaic (PV) system at the Contra Costa County Detention Center in Martinez, the application does not pass the Rule 21 checklist for several items. Refer to the attached document for more details. In addition, the customer should verify the answer to Question D in the application.</p><br><p>Section I.6 (Screen 4): Is the aggregate DG capacity on the line section less than 15 % of line section peak load? No, the DG capacity is 19 %.</p><br><p>Section I.10 (Screen 8): Is the “Line Configuration” screen met? No, the DG capacity is 19 %. A supplemental review will be performed to assess the issues from Section I.6 and Section I.10 (Screen 4 and Screen 8).</p><br><p>Before PG&E can complete the supplemental review, the customer must verify Question D on the “PG&E Generating Facility Interconnection Application” form and provide the calculation for the fault current.</p><br><p>For Question D, the customer indicated that the maximum, three-phase fault current is approximately 150 A @ 480 V. This appears to be load current, not fault current. The customer must provide supporting calculations for the fault current contributed by the generator. The results of this may change the findings from Section I.9 (Screen 7)</p>a>",
+        "attachments": [
+            {
+                "name": "Attachment 4",
+                "size": "1230kb",
+                "date": "31/03/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            },
+            {
+                "name": "Attachment 4",
+                "size": "123kb",
+                "date": "04/04/2017",
+                "icon": "https://cdn3.iconfinder.com/data/icons/brands-applications/512/File-512.png"
+            }
+        ]
+    }
+]

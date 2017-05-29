@@ -1,0 +1,255 @@
+<link rel="stylesheet" href="css/raci.css" />
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <ol class="breadcrumb">
+    <li><a href="#">Work process</a></li>
+    <li class="active">Phases</li>
+  </ol>
+  <h1>
+    My RACI
+    <span class="circle"><small>Phases</small></span>
+  </h1>
+</section>
+
+    <!-- Main content -->
+<section class="content container-fluid">
+  <div class="box">
+    <div id="toolbar-phase"></div>
+    <span id="notification" style="display:none;"></span>
+  </div>
+
+  <div id="raciEdit" class="box hidden">
+    <div class="box with-border">
+      <div class="panel-heading">Unassigned Deliverables Backlog
+        <div>
+          <span onclick='addNewDeliverable();' class="addnewdeliverable k-icon k-i-plus"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 r-col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-body">
+              <div id="list-phases" class="listview"></div>
+            </div>
+          </div>
+        </div>
+        <div id="phase-details-box" class="col-sm-4 r-col-sm-4">
+          <div class="panel panel-primary">
+          <!--<div class="sub-panel-heading">	List of delivrables by phase
+            <span> <a href="#" class="btn  btn-primary" onclick="saveDelivrablePhase();"><span class="glyphicon glyphicon-floppy-disk"></span>&nbsp;</a></span>
+          </div>-->
+            <div class="panel-body">
+              <div id="list-deliverablesByphase" class="listview"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 r-col-sm-4">
+          <div class="panel panel-primary">
+            <div class="panel-body">
+            
+              <div id="list-deliverables" class="listview"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="dialogRACI" style="display: none;">
+    <div class="panel-heading">
+      RACI Details
+      <div class="formValidate"><span id="primaryOKButton" class="k-primary k-icon k-i-check"></span></div>
+      <div><span class="k-icon k-i-close"></span></div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-primary">
+          <div class="panel-body " id="notificatioContainer">
+            <div class="form-group racidetail col-md-3">
+              <label for='inputR' >R</label><select id='inputR' multiple='multiple'></select>
+            </div>
+            <div class="form-group racidetail col-md-3">
+              <label for='inputA' >A</label><select id='inputA' multiple='multiple'></select>
+            </div>
+            <div class="form-group racidetail col-md-3">
+              <label for='inputC' >C</label><select id='inputC' multiple='multiple'></select>
+            </div>
+            <div class="form-group racidetail col-md-3">
+              <label for='inputI' >I</label><select id='inputI' multiple='multiple'></select>
+            </div>
+          </div>
+        </div>
+        <div class="MsgValidate">It should be mentioned at least responsible</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="raciPreview" style="padding: 25px; margin-top: -290px;">
+
+  <div id="grid"></div>
+
+</section>
+
+<section id="AddDeliverable" class="content container-fluid">
+	<!-- Page Content-->
+  <div id="dialog">
+    <div id='shipping'>
+				<div class="col-sm-12 form-horizontal" >
+					<div class="form-group">
+						<div class="col-sm-4"><label>Title:</label></div>
+						<div class="col-sm-8">
+							<input id="inputTitle" class="k-textbox form-control" data-bind="value: deliverable.title" />
+							<!--div data-bind="text: deliverable.title" class='form-control'></div-->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"><label>Issue Date:</label></div>
+						<div class="col-sm-8">
+							<input id="datePicker" class="form-control" data-role='datepicker' data-bind='value: deliverable.issueDate'
+							/>
+							<!--div data-bind="text: issueDateFormatted" class='form-control'></div-->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"><label>Status:</label></div>
+						<div class="col-sm-8">
+							<input id="dropdownListStatus" data-role='dropdownlist' class="form-control"
+							data-bind='source: statuseSource,
+							value: deliverable.status' data-text-field="name" data-value-field="id" />
+							<!--div data-bind="text: deliverable.status.name" class='form-control'></div-->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"><label>Type:</label></div>
+						<div class="col-sm-8">
+							<input id="dropdownListType" data-role='dropdownlist' class="form-control" data-bind='source: typesSource, value: deliverable.type'
+							 data-text-field="name" data-value-field="id" />
+							<!--div data-bind="text: deliverable.type.name" class='form-control'></div-->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"><label>Theme:</label></div>
+						<div class="col-sm-8">
+							<input id="dropdownListTheme" data-role='dropdownlist' class="form-control" data-bind='source: themesSource, value: deliverable.theme'
+							 data-text-field="name" data-value-field="id" />
+							<!--div data-bind="text: deliverable.theme.name" class='form-control'></div-->
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-4"><label>Security Classification:</label></div>
+						<div class="col-sm-8">
+							<input id="dropdownListSecurityClassification" data-role='dropdownlist' class="form-control" data-bind='source: securityClassificationsSource, value: deliverable.securityClassification'
+							 data-text-field="name" data-value-field="id" />
+							<!--div data-bind="text: deliverable.securityClassification.name" class='form-control'></div-->
+						</div>
+					</div>
+				</div>
+        <div class="formValidate"><button id="primaryADDButton" class="k-primary">ADD</button></div>
+		</div>
+  </div>
+</section>
+    <!-- /.content -->
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/RACIDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>
+<script src="js/datamodels/UserDataModel.js"></script>
+<script src="js/datamodels/PhaseDataModel.js"></script>
+<script src="js/datamodels/PhasesDataModel.js"></script>
+<script src="js/datamodels/DeliverableDataModel.js"></script>
+<script src="js/datamodels/DeliverablesDataModel.js"></script>
+<script src="vendors/kendoui/jszip.min.js"></script>
+<script src="js/controllers/RaciController.js"></script>
+<script src="js/datamodels/SecurityClassificationsDataModel.js"></script>
+<script src="js/datamodels/DeliverableTypesDataModel.js"></script>
+<script src="js/datamodels/DeliverableThemesDataModel.js"></script>
+<script type="text/x-kendo-template" id="templatePhaseItem">
+	<div class="item">
+		<span>#:name#</span>
+	</div>
+</script>
+
+<script type="text/x-kendo-template" id="templateDeliverableItemPhase">
+  <div class="item" onclick="editDeliverableFromPhase(#:id#);">
+    <div class="DocName task-block critical" id="#:id#">
+      <h5 class="task-id">TCON-#:id#</h5>
+      #if(data.raciRoleUsers){#
+        #if(data.raciRoleUsers.length>0){#
+          #if(data.raciRoleUsers[0].users.length>0){#
+            <div class="assigned-user"><img src="images/navbar/avatar/#:data.raciRoleUsers[0].users[0].avatar#" title="#:data.raciRoleUsers[0].users[0].name# #:data.raciRoleUsers[0].users[0].firstname#" class="img-responsive" alt="Arise Admin">
+            </div>
+        #}#
+      #}#
+      #}else{#
+      <div class="assigned-user"><img src="images/navbar/avatar/noavatar.jpg" class="img-responsive" alt="Arise Admin">
+      </div>
+      #}#
+      <button type="button" onclick="deleteDeliverableFromPhase(#:id#);" class="deletedeliverablefromphase">
+        <span class="k-icon k-i-close k-i-x " title="Remove Element" aria-label="Remove" ></span>
+      </button>
+      <p class="task-desc">#:name#</p>
+      <ul class="task-footer">
+        #if(status!=null){#
+         <li class="project-3"><span class="project-3-span">#:status#</span></li>
+        #}else{#
+         <li class="project-3"><span class="project-3-span">Unknown</span></li>
+        #}#
+      </ul>
+      #if(issueDate!=null){#
+      <span class="task-type">#:issueDate#</span>
+      #}#
+    </div>
+  </div>
+</script>
+
+<script type="text/x-kendo-template" id="templateDeliverableItem">
+  <div class="item">
+    <div class="DocName task-block critical" id="#:id#" onclick="updateRaci(#:id#);">
+      <h5 class="task-id">TCON-#:id# </h5>
+      <div class="assigned-user"><img src="images/navbar/avatar/noavatar.jpg" class="img-responsive" alt="Arise Admin">
+      </div>
+      <p class="task-desc">#:name#</p>
+      <ul class="task-footer">
+        <li class="project-3"><span class="project-3-span">Unknown</span></li>
+      </ul>
+      #if(issueDate!=null){#
+      <span class="task-type">#:issueDate#</span>
+      #}#
+    </div>
+  </div>
+</script>
+
+<script id="warningTemplate" type="text/x-kendo-template">
+  <div class="new-mail">
+    <img src="images/icons/envelope.png" />
+    <h3>#= title #</h3>
+    <p>#= message #</p>
+  </div>
+</script>
+<script id="errorTemplate" type="text/x-kendo-template">
+  <div class="wrong-pass">
+    <img src="images/icons/error-icon.png" />
+    <h3>#= title #</h3>
+    <p>#= message #</p>
+  </div>
+</script>
+<script id="successTemplate" type="text/x-kendo-template">
+  <div class="upload-success">
+    <img src="images/icons/success-icon.png" />
+    <h3>#= message #</h3>
+  </div>
+</script>
+<script>
+kendo.ui.progress($("#list-phases"), true);
+kendo.ui.progress($("#list-deliverables"), true);
+kendo.ui.progress($("#list-deliverablesByphase"), true);
+
+</script>
+<script type="text/javascript">
+  $(document).ready(function () {
+    createComponents();
+    $('table tbody tr td:nth-child(2)').html('');
+    $('#dialogRACI .panel-heading div span.k-i-close').click(function(){
+      $('#dialogRACI').hide();
+    });
+  });
+</script>

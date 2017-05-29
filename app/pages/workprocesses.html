@@ -1,0 +1,348 @@
+<link rel="stylesheet" href="css/workprocesses.css" />
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#">Work process</a></li>
+		<li class="active">Workprocess list</li>
+      </ol>
+      <h1>
+        My Work Processes
+        <span class="circle"><small>Workprocess list</small></span>
+	  </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+<div class="box">
+	<div id="toolbar-workprocess"></div>
+</div>
+
+<div class="box with-border">
+	<div class="panel-heading">List of workprocesses</div>
+	<div class="row">
+		<div class="col-sm-4 wp-col-sm-4">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<div class="item">
+						<button id="AddWorkprocessBtn" style="display: none;" class="k-button k-button-icontext" data-bind="visible: edit"><span class="k-icon k-i-add"></span>Add new workprocess</button>
+					</div>
+					<div id="list-workprocesses" class="listview"></div>
+				</div>
+			</div>
+		</div>
+		<div id="workprocess-help-box" class="col-sm-8 wp-col-sm-8">
+			<div class="panel panel-primary">
+				<div class="sub-panel-heading">Help</div>
+				<div class="panel-body">
+					<p>
+						To show workprocess details, click on the specified workprocess.
+					</p>
+					<p data-bind="visible:edit">
+						To add new workprocess, click on the &quot;<span class="k-icon k-i-add"/>Add new workprocess&quot; button.
+					</p>
+					<p data-bind="visible: editMode">
+						To remove a workprocess, click on the <span class="k-icon k-i-close-circle"/> button.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="workprocess-details-box" class="col-sm-8  wp-col-sm-8 hidden" >
+		</div>
+	</div>
+</div>
+</section>
+    <!-- /.content -->
+<script type="text/x-kendo-template" id="templateWorkprocessItem">
+	<div class="item" id="#:id#">
+		<span>#:name#</span>
+		<a class="pull-right" data-bind="visible: editMode" onclick="removeWorkprocess(event);"><span class="k-icon k-i-close-circle" title="Remove"/></a>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateWorkprocessDetails">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			 <div class="alert alert-warning alert-dismissable" style="display:none;" data-bind="visible: used">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+				<span class="glyphicon glyphicon-alert"></span>
+				This workprocess can not be edited or removed. It&#39;s used by at least one phase.
+			 </div>
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-2"><label>Name:</label></div>
+					<div class="col-sm-10" data-bind="text: name"></div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="panel panel-default with-shadow">
+					<div class="sub-panel-heading">Workflow</div>
+					<div class="panel-body">
+						<div id="workprocessSpace" class="col-sm-12">
+							<div id="workprocess">
+							</div>
+						</div>
+						<div id="workprocessEdition" class="col-sm-5">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateWorkprocessEdit">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal" id="wp-principal-form">
+				<div class="form-group">
+					<div class="col-sm-2"><label for="workprocessName">Name</label></div>
+					<div class="col-sm-10"><input type="text" name="WorkProcess name" class="form-control" id="workprocessName" data-bind="value:name" required></div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="panel panel-default with-shadow">
+					<div class="sub-panel-heading">Edit Workprocess</div>
+					<div class="panel-body">
+						<div id="workprocessSpace" class="col-sm-12">
+							<div id="workprocess" style="width:100%">
+							</div>
+						</div>
+						<div id="workprocessEdition" class="col-sm-5">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateWorkprocessAdd">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal" id="wp-principal-form">
+				<div class="form-group">
+					<div class="col-sm-2"><label for="workprocessName">Name</label></div>
+					<div class="col-sm-10"><input type="text" class="form-control" name="WorkProcess name" id="workprocessName" placeholder="Enter a Name" required></div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="panel panel-default with-shadow">
+					<div class="sub-panel-heading">Add new Workprocess</div>
+					<div class="panel-body">
+						<div id="workprocessSpace" class="col-sm-12">
+							<div id="workprocess" style="width:100%">
+							</div>
+						</div>
+						<div id="workprocessEdition" class="col-sm-5">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateStatusDetails">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Status details</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-4"><label>Name:</label></div>
+					<div class="col-sm-8" data-bind="text: name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>Type:</label></div>
+					<div class="col-sm-8" data-bind="text: type.name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>Editable:</label></div>
+					<div class="col-sm-4 "><input type="checkbox" disabled data-bind="checked: editable"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>Commentable:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: commentable"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateStatusAdd">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Add status</div>
+		<div class="panel-body" id="">
+			<div class="col-sm-12 form-horizontal" id="status-form">
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusName">Name:</label></div>
+					<div class="col-sm-7"><input type="text" name="Status name" class="form-control" id="statusName" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusType">Type:</label></div>
+					<div class="col-sm-7"><input type="text" name="Status type" class="form-control" id="statusType" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label for="statusEdit">Editable:</label></div>
+					<div class="col-sm-4 "><input type="checkbox" id="statusEdit"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label for="statusComment">Commentable:</label></div>
+					<div class="col-sm-4"><input type="checkbox" id="statusComment"></div>
+				</div>
+				<div class="form-group">
+					<button id="ValidateStatusBtn" class="k-button k-button-icontext"><span class="k-icon k-i-check"></span>OK</button>&nbsp;
+					<button class="k-button" id="CancelStatusBtn" class="k-button k-button-icontext"><span class="k-icon k-i-close"></span>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateStatusEdit">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Edit status</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal" id="status-form">
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusName">Name:</label></div>
+					<div class="col-sm-7"><input type="text" name="Status name" class="form-control" id="statusName" data-bind="value: name" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusType">Type:</label></div>
+					<div class="col-sm-7"><input type="text" name="Status type" class="form-control" id="statusType" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label for="statusEdit">Editable:</label></div>
+					<div class="col-sm-4 "><input type="checkbox" id="statusEdit" data-bind="checked: editable"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label for="statusComment">Commentable:</label></div>
+					<div class="col-sm-4"><input type="checkbox" id="statusComment" data-bind="checked: commentable"></div>
+				</div>
+				<div class="form-group"><button id="ValidateStatusBtn" class="k-button k-button-icontext"><span class="k-icon k-i-check"></span>OK</button>&nbsp;
+					<button class="k-button" id="CancelStatusBtn" class="k-button k-button-icontext"><span class="k-icon k-i-close"></span>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateTransitionDetails">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Transition details</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-4"><label>Name:</label></div>
+					<div class="col-sm-8" data-bind="text: label"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>From:</label></div>
+					<div class="col-sm-8"data-bind="text: fromText"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>To:</label></div>
+					<div class="col-sm-8" data-bind="text: toText"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>R</label></div>
+					<div class="col-sm-4 "><input type="checkbox" disabled data-bind="checked: R"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>A:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: A"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>C:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: C"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>I:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: I"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateTransitionAdd">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Add transition</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal" id="transition-form">
+				<div class="form-group">
+					<div class="col-sm-5"><label for="transitionName">Name</label></div>
+					<div class="col-sm-7"><input type="text" name="Transition name" class="form-control" id="transitionName" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusType">From</label></div>
+					<div class="col-sm-7"><input type="text" name="From" id="transitionFrom" class="form-control" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusEdit">To</label></div>
+					<div class="col-sm-7 "><input type="text" name="To" id="transitionTo" class="form-control" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="readAccess">R</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="readAccess" data-id="1" data-name="R"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="approveAccess">A</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="approveAccess" data-id="2" data-name="A"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="consultAccess">C</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="consultAccess" data-id="3" data-name="C"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="informAccess">I</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="informAccess" data-id="4" data-name="I"></div>
+				</div>
+				<div class="form-group"><button id="ValidateTransitionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-check"></span>OK</button>&nbsp;
+					<button id="CancelTransitionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-close"></span>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateTransitionEdit">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Edit transition</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal" id="transition-form">
+				<div class="form-group">
+					<div class="col-sm-5"><label for="transitionName">Name</label></div>
+					<div class="col-sm-7"><input type="text" class="form-control" id="transitionName" data-bind="value: label" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusType">From</label></div>
+					<div class="col-sm-7"><input type="text" id="transitionFrom" class="form-control" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="statusEdit">To</label></div>
+					<div class="col-sm-7 "><input type="text" id="transitionTo" class="form-control" required></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="readAccess">R</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="readAccess" data-bind="checked: R"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="approveAccess">A</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="approveAccess" data-bind="checked: A"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="consultAccess">C</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="consultAccess" data-bind="checked: C"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-5"><label for="informAccess">I</label></div>
+					<div class="col-sm-7"><input type="checkbox" id="informAccess" data-bind="checked: I"></div>
+				</div>
+				<div class="form-group">
+					<button id="ValidateTransitionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-check"></span>OK</button>&nbsp;
+					<button id="CancelTransitionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-close"></span>Cancel</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script>kendo.ui.progress($("#list-workprocesses"), true);</script>
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/StatusTypeDataModel.js"></script>
+<script src="js/datamodels/StatusDataModel.js"></script>
+<script src="js/datamodels/TransitionDataModel.js"></script>
+<script src="js/datamodels/WorkProcessDataModel.js"></script>
+<script src="js/datamodels/WorkProcessesDataModel.js"></script>
+<script src="js/controllers/WorkprocessesController.js"></script>

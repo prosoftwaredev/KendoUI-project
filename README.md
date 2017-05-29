@@ -1,1 +1,0 @@
-# KendoUI-project

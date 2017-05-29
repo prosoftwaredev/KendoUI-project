@@ -1,0 +1,153 @@
+<!--<link rel="stylesheet" href="css/deliverables.css" />
+ Content Header (Page header)
+<section class="content-header">
+	<ol class="breadcrumb">
+		<li><a href="#"></i>Deliverables</a></li>
+	</ol>
+	<h1>
+      My Deliverables
+      <span class="circle"><small>Deliverables list</small></span>
+    </h1>
+</section>
+
+ Main content
+<section class="content container-fluid">
+	 Page Content
+	<div class="box">
+		<div class="row">
+			<div class="col-sm-4">
+				<div data-role="toolbar">
+					<button data-role='button' data-icon="download" disabled>Import</button>
+					<button data-role='button' data-icon="upload" disabled>Export</button>
+				</div>
+				<div style='height: 10px;'></div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" data-bind='text: listOfDeliverablesTitle'></div>
+					<div class="panel-body">
+						<div class="item">
+							<button data-role='button' data-bind='visible: hasAddDeliverablePermissons, click: addNewDeliverable' data-icon='add'>Add New Deliverable</button>
+						</Div>
+						<div id="list-deliverables" class="listview"></div>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-8 deliverable-details'>
+				<div data-role="toolbar">
+					<button data-role='button' data-icon="edit" data-bind='click: editDeliverable, visible: deliverableIsEditable'>Edit</button>
+					<button data-role='button' data-icon="check" data-bind='click: saveDeliverable, visible: isAddCreateMode'>Save</button>
+					<button data-role='button' data-icon="close" data-bind='click: cancelSave, visible: isAddCreateMode'>Cancel</button>
+					<button data-role='button' data-icon="preview" data-bind="click: navigateToDetails, visible: isViewMode">View Details</button>
+				</div>
+				<div style='height: 10px;'></div>
+				<div class="panel panel-primary" style='max-height:420px;overflow-y:scroll;'>
+					<div class="panel-heading" data-bind='text: deliverableDetailsTitle'></div>
+					<div class="panel-body">
+						<div data-bind='visible: isHelpMode'>
+							<p data-bind='text: helpLine1'></p>
+							<p data-bind='text: helpLine2'></p>
+						</div>
+						<div class="col-sm-12 form-horizontal" data-bind='visible: isViewDetailsMode'>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Title:</label></div>
+								<div class="col-sm-8">
+									<input id="inputTitle" class="k-textbox form-control" data-bind="value: deliverable.title, visible: isAddCreateMode" />
+									<div data-bind="text: deliverable.title, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Issue Date:</label></div>
+								<div class="col-sm-8">
+									<input id="datePicker" class="form-control" data-role='datepicker' data-bind='value: deliverable.issueDate, visible: isAddCreateMode'
+									/>
+									<div data-bind="text: issueDateFormatted, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Status:</label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListStatus" data-role='dropdownlist' class="form-control"
+									data-bind='source: statuseSource,
+									value: deliverable.status,
+									visible: isAddCreateMode' data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.status.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Type:</label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListType" data-role='dropdownlist' class="form-control" data-bind='source: typesSource, value: deliverable.type, visible: isAddCreateMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.type.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Theme:</label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListTheme" data-role='dropdownlist' class="form-control" data-bind='source: themesSource, value: deliverable.theme, visible: isAddCreateMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.theme.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label>Security Classification:</label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListSecurityClassification" data-role='dropdownlist' class="form-control" data-bind='source: securityClassificationsSource, value: deliverable.securityClassification, visible: isAddCreateMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.securityClassification.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+						</div>
+						<div id="sectionsSpace" class="col-sm-12" data-bind='visible: isViewDetailsMode'>
+							<div id="sections">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+ /.content
+<script type="text/x-kendo-template" id="deliverable-item-template">
+	<div class="item">
+		<span>#:name#</span>
+	</div>
+</script>
+
+<script type="text/x-kendo-template" id="section-item-template">
+	<div class="panel panel-primary">
+		<div class="panel-heading">#= name #</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-12"> #= content #</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script>
+	kendo.ui.progress($("#list-deliverables"), true);
+
+</script>
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/StatusTypeDataModel.js"></script>
+<script src="js/datamodels/StatusDataModel.js"></script>
+<script src="js/datamodels/TransitionDataModel.js"></script>
+<script src="js/datamodels/WorkProcessDataModel.js"></script>
+<script src="js/datamodels/DeliverableDataModel.js"></script>
+<script src="js/datamodels/DeliverablesDataModel.js"></script>
+<script src="js/datamodels/SectionsDataModel.js"></script>
+<script src="js/datamodels/SecurityClassificationsDataModel.js"></script>
+<script src="js/datamodels/DeliverableTypesDataModel.js"></script>
+<script src="js/datamodels/DeliverableThemesDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>
+<script src="js/controllers/DeliverablesController.js"></script>
+<script>
+	$(document).ready(function () {
+		createComponents();
+	});
+
+</script>-->

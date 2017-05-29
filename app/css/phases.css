@@ -1,0 +1,55 @@
+.k-toggle-button .k-icon {
+  color: #FFFFFF !important;
+}
+.k-toolbar.k-widget.k-toolbar-resizable {
+  float: right;
+  margin-top: -75px;
+}
+.content.container-fluid .box:first-of-type{
+  margin-top: -20px;
+}
+#editPhaseBtn, #savePhaseBtn, #cancelPhaseBtn {
+  background-image: none;
+  background-color: #e52228;
+  border-color: #e52228;
+  color: #FFFFFF !important;
+  height: 35px;
+  border-radius: 3px;
+}
+#editPhaseBtn:hover, #editPhaseBtn:focus, #editPhaseBtn:active,
+#savePhaseBtn:hover, #savePhaseBtn:focus, #savePhaseBtn:active,
+#cancelPhaseBtn:hover, #cancelPhaseBtn:focus, #cancelPhaseBtn:active {
+  background-color: #ac2025 !important;
+  border-color: #ac2025 !important;
+  color: #FFFFFF !important;
+}
+#importPhaseBtn, #exportPhaseBtn {
+  background-image: none;
+  background-color: #FFFFFF;
+  /*border-color: #e52228;*/
+  color: #737373 !important;
+  height: 35px;
+  border-radius: 3px;
+}
+.p-col-sm-4 {
+  margin-top: 20px;
+  margin-left: 15px;
+  margin-right: 10px;
+  width:32%;
+}
+.p-col-sm-8 {
+  margin-top: 20px;
+  width:65%;
+}
+@media (max-width: 1250px){
+  .p-col-sm-4 {
+    margin-top: 20px;
+    width: 95%;
+    margin-left: 2.5%;
+  }
+  .p-col-sm-8 {
+    margin-top: 20px;
+    width: 95%;
+    margin-left: 2.5%;
+  }
+}

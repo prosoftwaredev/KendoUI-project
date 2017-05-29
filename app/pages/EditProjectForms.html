@@ -1,0 +1,127 @@
+<!-- Content Header (Page header) -->
+ <section class="content-header">
+  <h1>
+   Edit project
+  </h1>
+  <ol class="breadcrumb">
+	<li><a href="#"><i class="fa fa-plus"></i>Projects</a></li>
+	<li class="active">Edit project</li>
+  </ol>
+</section>
+
+    <!-- Main content -->
+<section id="edit-project-form" class="content container-fluid">
+ <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+   <div class="panel panel-orange">
+   <br>
+     <div class="form-horizontal" id="formPrincipal">
+    <fieldset>
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-name">Project name</label>
+        <div class="col-md-4">
+          <input id="project-name" name="project-name" type="text" placeholder="Project name" class="form-control input-md" required="" data-bind="value:name">
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-admin">Project administrator</label>
+        <div class="col-md-4">
+			<input id="project-admin" name="project-admin" type="text" placeholder="Admin name" class="form-control input-md" required="">
+			<div class="alert alert-warning alert-dismissable">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+				<span class="glyphicon glyphicon-alert"></span>
+				You can modify project administrator from organization chart.
+			</div>	
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-centername">Center Name</label>
+        <div class="col-md-4">
+          <input id="project-centername" name="project-centername" type="text" placeholder="Center Name" class="form-control input-md" data-bind="value:centerName">
+
+        </div>
+      </div>
+
+      <!-- Text input-->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-location">Location</label>
+        <div class="col-md-4">
+          <input id="project-location" name="project-location" type="text" placeholder="Location" class="form-control input-md" data-bind="value:location">
+        </div>
+      </div>
+      <!-- Button (Double) -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="NextProjectBtn"></label>
+        <div class="col-md-4 btn-container">
+          <button id="NextProjectBtn" name="NextProjectBtn" class="btn btn-info k-button-icontext"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Next</button>
+          <button id="CancelProjectBtn" name="CancelProjectBtn" class="btn btn-danger k-button-icontext"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancel</button>
+        </div>
+      </div>
+
+    </fieldset>
+  </div>
+
+    <!--form if yes-->
+  <div class="form-horizontal" id="formSecond" style="display: none;">
+    <fieldset>
+	   <div class="form-group">
+        <label class="col-md-5 control-label" for=" project-currentstatus">Current project status</label>
+        <div class="col-md-4">
+          <select id="project-currentstatus" name="project-currentstatus" class="form-control"></select>
+        </div>
+      </div>
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-phase">Current project phase</label>
+        <div class="col-md-4">
+          <select id="project-phase" name="project-phase" class="form-control"></select>
+        </div>
+      </div>
+
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-type">Type of the project</label>
+        <div class="col-md-4">
+          <select id="project-type" name="project-type" class="form-control"></select>
+        </div>
+      </div>
+
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-sector">Primary sector</label>
+        <div class="col-md-4">
+          <select id="project-sector" name="project-sector" class="form-control"></select>
+        </div>
+      </div>
+
+      <!-- Select Basic -->
+      <div class="form-group">
+        <label class="col-md-5 control-label" for="project-goal">Primary goal</label>
+        <div class="col-md-4">
+          <select id="project-goal" name="project-goal" class="form-control"></select></div>
+      </div>
+
+      <!-- Button (Double) -->
+      <div class="form-group">
+        <label class="col-md-5 control-label"></label>
+        <div class="col-md-4">
+		  <button id="BackProjectBtn" name="BackProjectBtn" class="btn btn-info k-button-icontext"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Back</button>
+          <button id="OKProjectBtn" name="OKProjectBtn" class="btn btn-success k-button-icontext"><span class="glyphicon glyphicon-ok"></span>&nbsp;OK</button>
+          <button id="CancelProject2Btn" name="CancelProject2Btn" class="btn btn-danger k-button-icontext"><span class="glyphicon glyphicon-remove"></span>&nbsp;Cancel</button>
+        </div>
+      </div>
+
+    </fieldset>
+  </div>  
+  </div>
+  </div>
+</section>
+<!-- /.content -->
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>
+<script src="js/datamodels/ProjectDataModel.js"></script>
+<script src="js/controllers/ProjectController.js"></script>

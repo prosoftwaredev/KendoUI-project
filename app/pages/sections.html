@@ -1,0 +1,114 @@
+<link rel="stylesheet" href="css/sections.css" />
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+    <ol class="breadcrumb">
+        <li><a href="#">Deliverables</a></li>
+		<li class="active">Sections</li>
+      </ol>
+      <h1>
+        My Deliverables
+        <span class="circle"><small>Sections list</small></span>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+<!-- Page Content-->
+
+<div class="box">
+	<div id="toolbar-section"></div>
+</div>
+
+<div class="box with-border">
+  <div class="panel-heading">List of sections</div>
+	<div class="row">
+		<div class="col-sm-4 s-col-sm-4">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<div class="item">
+						<button id="AddSectionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-add"></span>Add new Section</button>
+					</div>
+					<div id="list-sections" class="listview"></div>
+				</div>
+			</div>
+		</div>
+		<div id="section-help-box" class="col-sm-8 s-col-sm-8">
+			<div class="panel panel-primary">
+				<div class="sub-panel-heading">Help</div>
+				<div class="panel-body">
+					<p>
+						To show Section details, click on the specified Section.
+					</p>
+					<p>
+						To add new Section, click on the "Add new Section" button.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="section-details-box" class="col-sm-8 s-col-sm-8 hidden">
+		</div>
+	</div>
+	</div>
+	</section>
+    <!-- /.content -->
+	<script type="text/x-kendo-template" id="templateSectionItem">
+		<div class="item">
+			<span>#:name#</span>
+		</div>
+	</script>
+
+	<script type="text/x-kendo-template" id="templatesectionDetails">
+		<div class="panel panel-primary">
+			<div class="sub-panel-heading">Section Details</div>
+			<div class="panel-body">
+				<div class="col-sm-12 form-horizontal">
+					<div class="form-group">
+						<div class="col-sm-2"><label>Title:</label></div>
+						<div class="col-sm-10"  data-bind="text: title"></div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-2"><label>Content:</label></div>
+						<div class="col-sm-10" data-bind="html: content">/div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</script>
+<script type="text/x-kendo-template" id="templateSectionAdd">
+	<div class="panel panel-primary">
+		<div class="sub-panel-heading">Add new Section</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-2"><label for="Section-Name">Name</label></div>
+					<div class="col-sm-10"><input type="text" class="form-control" id="sectionName" placeholder="Enter a Name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2"><label for="SectionContent">Section Content</label></div>
+					<div class="col-sm-10"><textArea type="text" class="form-control" id="sectionContent"></textarea></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2"><label for="phaseStartDate">Responsable</label></div>
+					<div class="col-sm-10"><input class="form-control" id="sectionResponsable" ></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-2"><label for="phaseEndDate">Section Status</label></div>
+					<div class="col-sm-10"><select class="form-control" id="sectionStatus" placeholder="Enter Section Status"><option selected>Draft</option><option>Complited</option></select></div>
+				</div>
+			</div>
+		</div>
+		<button id="SaveNewSectionBtn" class="k-button k-button-icontext"><span class="k-icon k-i-add"></span>Save new Section</button>
+	</div>
+</script>
+<!-- /#page-content-wrapper -->
+<script>kendo.ui.progress($("#list-sections"), true);</script>
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/SectionDataModel.js"></script>
+<script src="js/datamodels/SectionsListDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>
+<script src="js/controllers/SectionsController.js"></script>
+<script>
+	$(document).ready(function() {
+		createComponents();
+	});
+</script>

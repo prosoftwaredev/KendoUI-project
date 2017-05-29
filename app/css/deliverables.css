@@ -1,0 +1,33 @@
+#list-deliverables {
+	border:none;
+}
+.item {
+	margin: 5px;
+	padding: 0;
+	min-width: 200px;
+	background-color: #fff;
+	line-height: 2.5em;
+}
+
+.item.k-state-selected {
+	background-color: #0099ff;
+	color:#fff	
+}
+.k-listview>.item {
+	border: 1px solid rgba(0,0,0,.1);
+	/*border-radius: 3px;*/
+	padding-left : 5px
+}
+.item:hover {
+	cursor:pointer
+}		  
+.item .k-button{
+	background-color: #fff;
+	width:100%;
+	height:50px
+}
+
+/*.km-scroll-wrapper {
+	height:80% !important;
+	overflow-y:auto
+}*/

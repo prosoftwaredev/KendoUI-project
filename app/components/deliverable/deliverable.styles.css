@@ -1,0 +1,22 @@
+#list-deliverables .item:hover {
+  background-color: #fff;
+  color: #fff;
+}
+#list-deliverables td {
+    padding: 0;
+}
+#list-deliverables tr {
+    background-color: transparent;
+}
+#list-deliverables .item {
+	border: 1px solid rgba(0,0,0,.1);
+	padding-left : 15px;
+	padding-right: 10px;
+}
+#list-deliverables tr.k-state-selected .item {
+	background-color: #0099ff;
+	color:#fff	
+}
+#deliverables-list-panel-body {
+	padding: 0;
+}

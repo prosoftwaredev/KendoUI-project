@@ -1,0 +1,733 @@
+<!--
+Concord Project Technologies CONFIDENTIAL
+__________________
+
+[2016-2017] Concord Project Technologies
+All Rights Reserved.
+
+NOTICE:All information contained herein is, and remains the property
+of Concord Project Technologies and its suppliers, if any.
+The intellectual and technical concepts contained herein are proprietary
+to Concord Project Technologies and its suppliers and may be covered by
+U.S. and Foreign Patents, patents in process, and are protected by trade
+secret or copyright law.
+Dissemination of this information or reproduction of this material is
+strictly forbidden unless prior written permission is obtained from
+Concord Project Technologies.
+-->
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>T-CON&trade; Concord Porject Technologies Inc.</title>
+  <meta name="description" content="T-CON an Intelligent Platform">
+  <meta name="author" content="Concord Project Technologies Inc.">
+  <link rel="apple-touch-icon" sizes="60x60" href="apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+  <link rel="manifest" href="manifest.json">
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <!-- Place favicon.ico in the root directory -->
+  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  
+  <!-- Vendors css -->
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <link rel="stylesheet" type="text/css" href="vendors/ie10-workaround/ie10-viewport-bug-workaround.css">
+
+  <!-- Bootstrap 3.3.6 -->
+  <!--link rel="stylesheet" href="vendors/bootstrap/css/bootstrap.min.css"-->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+
+  <!-- KendoUI -->
+  <link rel="stylesheet" href="vendors/kendoui/kendo.common-office365.min.css"/>
+  <link rel="stylesheet" href="vendors/kendoui/kendo.office365.min.css"/>
+  <link rel="stylesheet" href="vendors/kendoui/kendo.office365.mobile.min.css"/>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+
+  <!-- Theme style -->
+  <link rel="stylesheet" type="text/css" href="vendors/adminLTE/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" type="text/css" href="css/tcon.css">
+
+
+  <script src="vendors/modernizr/modernizr.js"></script>
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  
+  <link rel="stylesheet" type="text/css" href="css/custom-style.css">
+</head>
+
+<body class="hold-transition sidebar-mini">
+<!--[if lte IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+  your browser</a> to improve your experience and security.</p>
+<![endif]-->
+<div class="wrapper">
+
+  <!-- Main Header -->
+  <header class="main-header">
+<div class="navbar-left" style=" background-color: #ffffff;">
+<!-- Sidebar toggle button-->
+    <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
+      <span class="sr-only">Toggle navigation</span>
+    </a>
+        <a href="index.html" class="logo">
+          <!-- logo for regular state and mobile devices -->
+          <span class="logo-mini"><img src="images/navbar/TCON-LOGO.png" alt="Concord Project Technologies Inc."/></span>
+			  <span class="logo-lg">
+				<img src="images/navbar/TCON-LOGO.png" alt="Concord Project Technologies Inc."/>
+			  </span>
+        </a>
+      </div>
+
+
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <div class="navbar-left dropnav">
+        <ul class="nav navbar-nav">
+          <li class="dropdown project-list-header project-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="font-size: 16px;">Projects
+			<i class="fa fa-angle-down" aria-hidden="true"></i></a>
+            <ul class="dropdown-menu">
+				<li id="ListProjectsHeader" data-template="templateProjectItemHeader" data-bind="source:projects"></li>
+				<li role="separator" class="divider" data-bind="visible:canAddProject"></li>
+				<li><a href="#!CreateNewProject" style="display:none" id="addProjectHeaderList" data-bind="visible:canAddProject">Create project</a></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav project-list-header create-btn">
+          <li><a href="#" id="creation-btn" class="btn-primary tcon-btn create" style="font-size: 16px;"><i class="fa fa-plus"></i>Create</a></li>
+        </ul>
+      </div>
+      <!-- Navbar Right Menu -->
+      <div class="navbar-custom-menu">
+		<div id="userMenu" data-open="0" class=""><i class="fa fa-user" aria-hidden="true"></i></div>
+        <ul id="mobileUserMenu" class="nav navbar-nav">
+		
+          <li class="dropdown notifications messages-menu phone-call-menu">
+            <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+              <img src="images/icons/phne-ico.png">
+			  <label>Contacts</label>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header"></li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+
+                  <li><!-- start message -->
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/avatar/avatar5.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>Avatar</h4>
+                      <p> <small class="ico-phone"><i class="fa fa fa-phone-square"></i></small> +03358746982 </p>
+                    </a>
+
+                  </li>
+                  <!-- end message -->
+                  <li><!-- start message -->
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/avatar/avatar3.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>Avatar</h4>
+                      <p> <small class="ico-phone"><i class="fa fa fa-phone-square"></i></small> +03358746982 </p>
+                    </a>
+
+                  </li>
+                  <li><!-- start message -->
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/avatar/avatar2.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>Avatar</h4>
+                      <p> <small class="ico-phone"><i class="fa fa fa-phone-square"></i></small> +03358746982 </p>
+                    </a>
+
+                  </li>
+                  <li><!-- start message -->
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/avatar/avatar.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>Avatar</h4>
+                      <p> <small class="ico-phone"><i class="fa fa fa-phone-square"></i></small> +03358746982 </p>
+                    </a>
+
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="">Create a conference room</a></li>
+            </ul>
+          </li>
+
+          <!-- Video call: style can be found in dropdown.less-->
+          <li class="dropdown notifications messages-menu video-call-menu">
+            <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+              <img src="images/icons/group-user-ico.png">
+			  <label>Groups</label>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header"></li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="#" >
+                      <div class="pull-left">
+                        <img src="images/navbar/customer-support-videocall.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Cost and schedule trade-offs Chat Room
+
+                      </h4>
+
+                    </a>
+                  </li>
+                  <!-- end message -->
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/idea.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Cost reduction Chat Room
+
+                      </h4>
+
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/brainstorm.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Contracting incentives Chat Room
+
+                      </h4>
+
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/badge.png" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Preparing for Gate 4 Chat Room
+
+                      </h4>
+
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="">Create a conference room</a></li>
+            </ul>
+          </li>
+
+          <!-- Messages: style can be found in dropdown.less-->
+          <li class="dropdown notifications messages-menu">
+            <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+              <img src="images/icons/mail-ico.png">
+			  <label>Messages</label>
+              <span class="label label-success">4</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 4 messages</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- start message -->
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/user2-160x160.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Support Team
+                        <small><i class="fa fa-clock-o"></i> 5 mins</small>
+                      </h4>
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  <!-- end message -->
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/user3-128x128.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        T-CON&trade; Design Team
+                        <small><i class="fa fa-clock-o"></i> 2 hours</small>
+                      </h4>
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/user4-128x128.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Developers
+                        <small><i class="fa fa-clock-o"></i> Today</small>
+                      </h4>
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/user3-128x128.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Sales Department
+                        <small><i class="fa fa-clock-o"></i> Yesterday</small>
+                      </h4>
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="">
+                      <div class="pull-left">
+                        <img src="images/navbar/user4-128x128.jpg" class="img-circle" alt="User Image">
+                      </div>
+                      <h4>
+                        Reviewers
+                        <small><i class="fa fa-clock-o"></i> 2 days</small>
+                      </h4>
+                      <p>Why not buy a new awesome theme?</p>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">See All Messages</a></li>
+            </ul>
+          </li>
+          <!-- Notifications: style can be found in dropdown.less -->
+          <li class="dropdown notifications notifications-menu">
+            <a href="" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+              <img src="images/icons/notification-ico.png">
+			  <label>Notifications</label>
+              <span class="label label-warning">10</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 10 notifications</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
+                      page and may cause design problems
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-users text-red"></i> 5 new members joined
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-shopping-cart text-green"></i> 25 changes approved
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#">
+                      <i class="fa fa-user text-red"></i> You changed your username
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="footer"><a href="#">View all</a></li>
+            </ul>
+          </li>
+          <!-- Tasks: style can be found in dropdown.less -->
+          <li class="dropdown notifications tasks-menu">
+            <a href="#" class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown">
+              <img src="images/icons/flag-ico.png">
+			  <label>Tasks</label>
+              <span class="label label-danger">9</span>
+            </a>
+            <ul class="dropdown-menu">
+              <li class="header">You have 9 tasks</li>
+              <li>
+                <!-- inner menu: contains the actual data -->
+                <ul class="menu">
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Design some buttons
+                        <small class="pull-right">20%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">20% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Create a nice theme
+                        <small class="pull-right">40%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-green" style="width: 40%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">40% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Some task I need to do
+                        <small class="pull-right">60%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-red" style="width: 60%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">60% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                  <li><!-- Task item -->
+                    <a href="#">
+                      <h3>
+                        Make beautiful transitions
+                        <small class="pull-right">80%</small>
+                      </h3>
+                      <div class="progress xs">
+                        <div class="progress-bar progress-bar-yellow" style="width: 80%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                          <span class="sr-only">80% Complete</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                  <!-- end task item -->
+                </ul>
+              </li>
+              <li class="footer">
+                <a href="#">View all tasks</a>
+              </li>
+            </ul>
+          </li>
+          <!-- Agenda: style can be found in dropdown.less -->
+          <li class="dropdown notifications agenda-menu">
+            <a href="" rel="8">
+              <img src="images/icons/calender-ico.png">
+			  <label>Calender</label>
+            </a>
+          </li>
+          <!-- Help:-->
+          <li class="dropdown notifications tasks-menu">
+            <a href=""  rel="20">
+              <img src="images/icons/help-ico.png">
+			  <label>Help</label>
+            </a>
+          </li>		  
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs" data-bind="text:userName"></span>
+              <i class="fa fa-caret-down"></i>
+              <!--<img class="user-image" data-bind="attr:{src:userAvatar}">-->
+              <img class="user-image" src="images/navbar/avatar/username_5.png">
+            </a>
+            <ul class="dropdown-menu user-profile">
+              <!-- User image -->
+
+              <!-- Menu Body -->
+              <div class="user-body">
+
+                <li><a href="" rel="19" class="waves-effect"><i class="glyphicon glyphicon-user"></i> My Profile</a></li>
+                <li><a href="#" class="waves-effect"><i class="glyphicon glyphicon-star"></i> Activity Log</a></li>
+
+                <li><a href="#" class="waves-effect" onclick="logout();"><i class="glyphicon glyphicon-log-out"></i>Sign Out</a></li>
+
+                <!-- /.row -->
+              </div>
+              <!-- Menu Footer-->
+
+            </ul>
+          </li>
+        </ul>
+      
+	  </div>
+    </nav>
+  </header>
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+
+      <!-- Sidebar user panel (optional) -->
+      <!-- <div class="user-panel">
+       <div class="pull-left image">
+         <img src="images/navbar/user2-160x160.jpg" class="img-circle" alt="User Image">
+       </div>
+       <div class="pull-left info">
+         <p>Olfa Hamdi</p>
+         Status
+          <a href="#"><i class="fa fa-circle text-success"></i>Online</a>
+        </div>
+      </div>-->
+      <div class="user-panel">&nbsp</div>
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu">
+        <!--  <li class="header">T-CON Framework</li>-->
+          <li class="treeview">
+            <a href="#"><img src="images/icons/dashboard-ico.png"> <span>My Dashboards</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-left"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#!MyDailyLog" class="waves-effect" onclick="loadContentFromURI('mydailylogdb');"><i class="fa fa-calendar-check-o"></i>My Daily Log</a></li>
+              <li><a href="#!General" class="waves-effect"  onclick="loadContentFromURI('generaldb');"><i class="fa fa-cog"></i>General</a></li>
+              <li><a href="#!Scheduler" class="waves-effect"  onclick="loadContentFromURI('schedulerdb');"><i class="fa fa-calendar-times-o"></i>Scheduler</a></li>
+              <li><a href="#!Business" class="waves-effect" onclick="loadContentFromURI('businessdb');"><i class="fa fa-shopping-bag"></i>Business</a></li>
+              <li><a href="#!Field" class="waves-effect" onclick="loadContentFromURI('fielddb');"><i class="fa fa-gears"></i>Field</a></li>
+              <li><a href="#!Safety" class="waves-effect" onclick="loadContentFromURI('safetydb');"><i class="fa fa-medkit"></i>Safety</a></li>
+              <li><a href="#!Cost" class="waves-effect" onclick="loadContentFromURI('costdb');"><i class="fa fa-usd"></i>Cost</a></li>
+              <li><a href="#!Contracts" class="waves-effect" onclick="loadContentFromURI('contractsdb');"><i class="fa fa-legal"></i>Contracts</a></li>
+              <li><a href="#!Risks" class="waves-effect" ronclick="loadContentFromURI('riskdb');"><i class="fa fa-warning"></i>Risk</a></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#"><img src="images/icons/my-delivery-ico.png"> <span>My Deliverables</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-left"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#deliverables" class="waves-effect" onclick="app.navigate('Deliverables');"><i class="fa fa-file-o"></i>My Deliverables</a></li>
+              <li><a href="#sectionsStandalone" class="waves-effect"  onclick="app.navigate('sectionsStandalone');"><i class="fa fa-list"></i>My Sections</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+              <a href="#"><img src="images/icons/work-process-ico.png"> <span>My Work Process</span>
+                  <span class="pull-right-container">
+                    <i class="fa fa-angle-down pull-left"></i>
+                  </span>
+              </a>
+              <ul class="treeview-menu">
+                  <li><a href="#!MyWorkpress" class="waves-effect" onclick="loadContentFromURI('workprocesses');"><i class="fa fa-briefcase"></i>My Work processes</a></li>
+                  <li><a href="#!MyPhases" class="waves-effect"  onclick="loadContentFromURI('phases');"><i class="fa fa-list"></i>My Phases</a></li>
+               </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#"><img src="images/icons/my-team-ico.png"> <span>My Team</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-left"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#!MyOrgChart" class="waves-effect" onclick="loadContentFromURI('OrgChart');"><i class="fa fa-sitemap"></i>My Org Chart</a></li>
+              <li><a href="#!MyRACI" class="waves-effect"  onclick="loadContentFromURI('Raci');"><i class="fa fa-table"></i>My RACI</a></li>
+              <li><a href="#!MyTeamActivity" class="waves-effect"  onclick="loadContentFromURI('TeamActivity');"><i class="fa fa-align-left"></i>My Team Activity</a></li>
+            </ul>
+          </li>
+
+          <li class="treeview">
+            <a href="#"><img src="images/icons/my-modules-ico.png"> <span>My Modules</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-down pull-left"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#!Plugin1" class="waves-effect" onclick="loadContentFromURI('plugin1');"><i class="fa fa-thumbs-o-up"></i>Module #1</a></li>
+              <li><a href="#!Plugin2" class="waves-effect"  onclick="loadContentFromURI('plugin2');"><i class="fa fa-puzzle-piece"></i>Module #2</a></li>
+            </ul>
+          </li>
+
+        </ul>
+        <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper" id="pagecontent">
+	<!-- Your Page Content Here -->
+
+  </div>
+  <!-- /.content-wrapper -->
+
+  <div id="templates-content"></div>
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      <em>Intelligence is the ability to adapt to change</em>
+    </div>
+    <!-- Default to the left -->
+    <p class="text-muted"><strong>Copyright &copy; 2017 <a href="http://www.tconglobal.com/" target="_blank">Concord
+      Project Technologies Inc.</a>.</strong> All rights reserved.</p>
+</div>
+</footer>
+</div>
+<!-- ./wrapper -->
+<span id="popupNotification"></span>
+<script type="text/x-kendo-template" id="templateProjectItemHeader">
+	<a data-bind="attr:{id:id},text:name"></a>
+</script>
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 1.12.3 -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="vendors/jquery/jquery-1.12.3.min.js"><\/script>')</script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="vendors/jquery/jquery.base64.js"></script>
+<!-- Bootstrap 3.3.6 -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<!--script src="vendors/bootstrap/js/bootstrap.min.js"></script-->
+
+<!-- IE10 viewport hack for Surface/desktop Windows 8 bug-->
+<script src="vendors/ie10-workaround/ie10-viewport-bug-workaround.js"></script>
+<script src="vendors/kendoui/kendo.all.min.js"></script>
+<script src="vendors/kendoui/jszip.min.js"></script>
+
+
+<!--
+Slimscroll and FastClick plugins.
+Both of these plugins are recommended to enhance the
+user experience. Slimscroll is required when using the
+fixed layout.-->
+<script src="vendors/adminLTE/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="vendors/adminLTE/plugins/fastclick/fastclick.min.js"></script>
+
+<!-- AdminLTE App -->
+<script src="vendors/adminLTE/dist/js/app.min.js"></script>
+
+<script>
+  var app = app || {};
+</script>  
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+<!--script>
+  var app = app || {};
+
+  !function (A, n, g, u, l, a, r) {
+    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+  }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-XXXXX-X');
+  ga('send', 'pageview');
+</script-->
+	<!-- T-con js-->
+<script src="js/common.js"></script>
+<script src="js/tcon.js"></script>
+
+<script src="js/ckfinder/ckfinder.js"></script>
+<script src="js/ckeditor/ckeditor.js"></script>
+
+<link rel="stylesheet" href="components/deliverable/deliverable.styles.css">
+
+<script src="components/core/view.loader.service.js"></script>
+<script src="components/core/router.service.js"></script>
+<script src="components/core/set.request.header.service.js"></script>
+
+<script src="components/deliverable/models/security.classification.model.js"></script>
+<script src="components/deliverable/models/status.model.js"></script>
+<script src="components/deliverable/models/theme.model.js"></script>
+<script src="components/deliverable/models/type.model.js"></script>
+
+
+<script src="components/deliverable/deliverable.model.js"></script>
+<script src="components/deliverable/deliverables.model.js"></script>
+<script src="components/deliverable/deliverable.controller.js"></script>
+
+
+<link rel="stylesheet" href="components/sections/sections.styles.css">
+
+<script src="components/sections/models/attachments.model.js"></script>
+<script src="components/sections/models/comments.model.js"></script>
+<script src="components/sections/models/create.section.model.js"></script>
+<script src="components/sections/models/deliverable.sections.model.js"></script>
+<script src="components/sections/models/impact.analysis.model.js"></script>
+<script src="components/sections/models/project.sections.model.js"></script>
+<script src="components/sections/models/revisions.model.js"></script>
+<script src="components/sections/models/variables.model.js"></script>
+
+<script src="components/sections/section.model.js"></script>
+<script src="components/sections/sections.helper.js"></script>
+<script src="components/sections/sections.controller.js"></script>
+
+<script src="components/sectionsStandalone/sectionsstd.controller.js"></script>
+<script src="components/sectionsStandalone/sections.helper.js"></script>
+<script src="components/sectionsStandalone/section.model.js"></script>
+<script src="components/sectionsStandalone/models/user.sections.model.js"></script>
+<script src="components/sectionsStandalone/models/attachments.model.js"></script>
+<script src="components/sectionsStandalone/models/comments.model.js"></script>
+<script src="components/sectionsStandalone/models/create.section.model.js"></script>
+<script src="components/sectionsStandalone/models/impact.analysis.model.js"></script>
+<script src="components/sectionsStandalone/models/project.sections.model.js"></script>
+<script src="components/sectionsStandalone/models/revisions.model.js"></script>
+<script src="components/sectionsStandalone/models/variables.model.js"></script>
+
+
+<script>
+	$("#userMenu").click(function()
+		{
+		var isOpen=$(this).attr("data-open");
+			if(isOpen==0) 
+			{ 
+				$("#mobileUserMenu").addClass("open");
+				$(this).attr("data-open",1);
+				$("body").addClass("overlay");
+			} 
+			else
+			{
+				$("#mobileUserMenu").removeClass("open");
+				$("body").removeClass("overlay");
+				$(this).attr("data-open",0);
+			}
+	});
+</script>
+
+</body>
+</html>

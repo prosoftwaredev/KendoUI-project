@@ -1,0 +1,47 @@
+<!-- Content Header (Page header) -->
+<section class="content-header">
+  <ol class="breadcrumb">
+        <li><a href="#">Home</a></li> <li class="active"> Projects</li>
+  </ol>
+  <h1>
+
+       All projects
+  </h1>
+  <a href="#" id="add-project-btn" class="btn-primary tcon-btn new-project" data-bind="visible:canAddProject" style="font-size: 16px;"><i class="fa fa-plus"></i>New Project</a>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid" id="projectsPage">
+	<!--div class="col-xs-12 col-sm-6 col-md-4 col-lg-4" style="display:none;" data-bind="visible:canAddProject">
+		 <button type="button" class="btn btn-primary" id="addProject" title="New project"><span class="fa fa-plus-circle" style="font-size: 50px;"></span></button>
+	</div-->
+	<section id="ListProject" class="example-box-wrapper" data-template="templateProjectItem" data-bind="source:projects">
+	</section>
+</section>
+<!-- /.content -->
+<script type="text/x-kendo-template" id="templateProjectItem">
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+		<div class="projectItem panel panel-default" data-bind="attr:{id:id}">
+			<div class="panel-body">
+				<img src="images/TCON-LOGO.png" class="#=(get('active')==false)?'greyshades':''# center-block"/>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-xs-12 col-sm-8">
+						<div class="col-sm-12 n-p ellipsis pull-left projectName" data-bind="text:name">cascs</div>
+						<div class="col-sm-12 n-p ellipsis pull-left projectDate">Created: Sunday, April 23, 2017</div>
+					</div>
+					<div class="col-xs-12 col-sm-4 text-right btns">
+						<button type="button" class="btn btn-info edit-project-btn" data-bind="visible:canEditProject" title="Edit"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></button>
+						<button type="button" class="btn btn-info delete-project-btn" data-bind="visible:canDeleteProject, attr:{active:active}" title="#=(get('active')==false)?'Activate':'Deactivate'#"><span class="glyphicon #=(get('active')==false)?'glyphicon-eye-open':'glyphicon-eye-close'#" aria-hidden="true"></span></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script>kendo.ui.progress($("#ListProject"), true);</script>
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/ProjectDataModel.js"></script>
+<script src="js/datamodels/ProjectsDataModel.js"></script>
+<script src="js/controllers/ProjectsController.js"></script>

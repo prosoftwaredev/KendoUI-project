@@ -1,0 +1,309 @@
+/* uses font awesome for social icons */
+@import url(http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+
+/*
+#users-details-box{
+  text-align: center;
+}*/
+#loader {
+  padding: 200px;
+}
+
+/*social buttons*/
+.btn-social{
+  color: white;
+  opacity:0.9;
+}
+.btn-social:hover {
+  color: white;
+  opacity:1;
+}
+.btn-facebook {
+  background-color: #3b5998;
+  opacity:0.9;
+}
+.btn-twitter {
+  background-color: #00aced;
+  opacity:0.9;
+}
+.btn-linkedin {
+  background-color:#0e76a8;
+  opacity:0.9;
+}
+.btn-github{
+  background-color:#000000;
+  opacity:0.9;
+}
+.btn-google {
+  background-color: #c32f10;
+  opacity: 0.9;
+}
+.btn-stackoverflow{
+  background-color: #D38B28;
+  opacity: 0.9;
+}
+
+/* resume stuff */
+
+.bs-callout {
+  -moz-border-bottom-colors: none;
+  -moz-border-left-colors: none;
+  -moz-border-right-colors: none;
+  -moz-border-top-colors: none;
+  border-color: #eee;
+  border-image: none;
+  /*border-radius: 3px;*/
+  border-style: solid;
+  border-width: 1px 1px 1px 5px;
+  margin-bottom: 5px;
+  padding: 20px;
+}
+.bs-callout:last-child {
+  margin-bottom: 0px;
+}
+.bs-callout h4 {
+  margin-bottom: 10px;
+  margin-top: 0;
+}
+
+.bs-callout-danger {
+  /*border-left-color: #d9534f;*/
+}
+
+.bs-callout-danger h4{
+  color: #d9534f;
+}
+
+.resume .list-group-item:first-child, .resume .list-group-item:last-child{
+  /*border-radius:0;*/
+}
+
+/*makes an anchor inactive(not clickable)*/
+.inactive-link {
+  pointer-events: none;
+  cursor: default;
+}
+
+.resume-heading .social-btns{
+  margin-top:15px;
+}
+.resume-heading .social-btns i.fa{
+  margin-left:-5px;
+}
+
+
+
+@media (max-width: 992px) {
+  .resume-heading .social-btn-holder{
+    padding:5px;
+  }
+}
+
+
+/* skill meter in resume. copy pasted from http://bootsnipp.com/snippets/featured/progress-bar-meter */
+
+.progress-bar {
+  text-align: left;
+  white-space: nowrap;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+
+.progress-bar > .progress-type {
+  padding-left: 10px;
+}
+
+.progress-meter {
+  min-height: 15px;
+  border-bottom: 2px solid rgb(160, 160, 160);
+  margin-bottom: 15px;
+}
+
+.progress-meter > .meter {
+  position: relative;
+  float: left;
+  min-height: 15px;
+  border-width: 0px;
+  border-style: solid;
+  border-color: rgb(160, 160, 160);
+}
+
+.progress-meter > .meter-left {
+  border-left-width: 2px;
+}
+
+.progress-meter > .meter-right {
+  float: right;
+  border-right-width: 2px;
+}
+
+.progress-meter > .meter-right:last-child {
+  border-left-width: 2px;
+}
+
+.progress-meter > .meter > .meter-text {
+  position: absolute;
+  display: inline-block;
+  bottom: -20px;
+  width: 100%;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: rgb(160, 160, 160);
+  text-align: left;
+}
+
+.progress-meter > .meter.meter-right > .meter-text {
+  text-align: right;
+}
+/*fin*/
+.info {
+  display: block;
+  line-height: 22px;
+  padding: 0 5px 5px 0;
+  color: #36558e;
+}
+
+#shipping {
+  text-align: center;
+  /*padding: 50px 0 0 30px;*/
+  padding-top: 10px;
+}
+
+.k-autocomplete
+{
+  width: 250px;
+  vertical-align: middle;
+}
+
+.hint {
+  line-height: 22px;
+  color: #aaa;
+  font-style: italic;
+  font-size: .9em;
+  color: #7496d4;
+}
+.page-title{
+	font-size:22px;
+}
+
+.inputStyle{
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555;
+  border: 1px solid #ccc;
+  /*border-radius: 4px;*/
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+  -webkit-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+  transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.formValidate{
+  text-align: center;
+  margin: 10px;
+}
+.MsgValidate {
+  margin: 20px;
+  display: none;
+  color: red;
+}
+
+.imgavatar{
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  float: none;
+  margin-right: 0;
+  margin-top: -8px;
+  line-height: 10px;
+}
+.k-window-titlebar {
+  background-color: #0669ce;
+  /*border-radius: 3px 3px 0 0;*/
+}
+.k-content {
+  /*border-radius: 0 0 3px 3px;*/
+}
+.k-i-close {
+  color: white;
+}
+div.k-window {
+  border-style: none;
+}
+.panel .page-header {
+  padding-top: 10px;
+  margin: 0;
+  height: 150px;
+}
+.panel .page-header .page-title {
+  font-size: 18px;
+  text-align: center;
+  color: #FFFFFF;
+  margin-top: 23px;
+}
+.panel .page-header small {
+  text-align: center;
+  font-size: 15px;
+  color: #FFFFFF;
+}
+.panel {
+  border-color: #FDFBFB;
+  box-shadow: none;
+}
+.org-chart {
+  background-color: #FDFBFB;
+}
+
+.k-diagram .k-layer {
+  background-color: #FDFBFB;
+}
+.k-toggle-button .k-icon {
+  color: #FFFFFF !important;
+}
+.k-toolbar.k-widget.k-toolbar-resizable {
+  float: right;
+  margin-top: -75px;
+}
+.content.container-fluid .box:first-of-type{
+  margin-top: -20px;
+}
+#editOrgChartBtn, #saveOrgChartBtn, #cancelOrgChartBtn {
+  background-image: none;
+  background-color: #e52228;
+  border-color: #e52228;
+  color: #FFFFFF !important;
+  height: 35px;
+  border-radius: 3px;
+}
+#editOrgChartBtn:hover, #editOrgChartBtn:focus, #editOrgChartBtn:active,
+#saveOrgChartBtn:hover, #saveOrgChartBtn:focus, #saveOrgChartBtn:active,
+#cancelOrgChartBtn:hover, #cancelOrgChartBtn:focus, #cancelOrgChartBtn:active {
+  background-color: #ac2025 !important;
+  border-color: #ac2025 !important;
+  color: #FFFFFF !important;
+}
+#importOrgChartBtn, #exportOrgChartBtn {
+  background-image: none;
+  background-color: #FFFFFF;
+  /*border-color: #e52228;*/
+  color: #737373 !important;
+  height: 35px;
+  border-radius: 3px;
+}
+.col-sm-4 .img-circle {
+  box-shadow: 0px 10px 25px -12px rgba(0,0,0,0.75);
+}
+.col-sm-8 .list-group {
+  text-align: left !important;
+}
+.list-group-item {
+  border: none;
+  background-color: transparent;
+}
+.page-header {
+  border-bottom: none;
+}
+.list-group {
+  box-shadow: none;
+}

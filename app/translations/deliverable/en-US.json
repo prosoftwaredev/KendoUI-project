@@ -1,0 +1,51 @@
+{
+    "titles": {
+        "header": "My Deliverables",
+        "link": "Deliverables",
+        "list": "List of deliverables",
+        "help": "Help",
+        "add": "Add New Deliverable",
+        "edit": "Edit Deliverable Details",
+        "view": "View Deliverable Details",
+        "headerAdditional": "Deliverables list",
+        "headerDetails": "Deliverable detail",
+        "details": "Details"
+    },
+    "helpLine1": "To show deliverable details, click on the specified deliverable.",
+    "helpLine2": "To add new deliverable, click on the \"Add new deliverable\" button.",
+    "helpLine3": "Please use the autocomlete to choose section or create new one.",
+    "buttons": {
+      "import": "Import",
+      "export": "Export",
+      "edit": "Edit",
+      "update": "Update",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "viewDetails": "View Details",
+      "addComment": "Add Comment",
+      "view": "View",
+      "save": "Save",
+      "discard": "Discard",
+      "addFile": "Add File",
+      "addSection": "Add Section",
+      "editSection": "Update Title",
+      "closeWindow": "Close Window",
+      "open": "Open"
+    },
+    "content": {
+      "title": "Title",
+      "issueDate": "Issue Date",
+      "status": "Status",
+      "type": "Type",
+      "theme": "Theme",
+      "securityClassification": "Security Classification",
+      "attachments": "Attachments",
+      "comments": "Comments",
+      "revisions": "Revisions",
+      "impactAnalysis": "Impact Analysis",
+      "variables": "Variables",
+      "logs": "Logs",
+      "contributors": "Contributors",
+      "dropFile": "Drop file here to upload"
+    }
+}

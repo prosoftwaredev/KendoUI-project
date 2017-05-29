@@ -1,0 +1,140 @@
+<script type="text/html" id="deliverable-page-template">
+<!--Content Header (Page header) -->
+<section class="content-header">
+	<ol class="breadcrumb">
+		<li><a href="#" data-bind='text: linkTitle'></i></a></li>
+	</ol>
+	<h1>
+     <span><big data-bind='text: headerTitle'></big></span>
+      <span class="circle"><small data-bind='text: deliverablesList'></small></span>
+    </h1>
+</section>
+
+<!-- Main content -->
+<section class="content container-fluid">
+	<div data-role="notification" id="deliverable-notification"></div>
+	<!-- Page Content-->
+	<div class="box">
+		<div class="row">
+			<div class="col-sm-12 col-md-4">
+				<div data-role="toolbar">
+					<button data-role='button' data-icon="download" disabled><span data-bind="text: importButton"></span></button>
+					<button data-role='button' data-icon="upload" disabled><span data-bind="text: exportButton"></span></button>
+				</div>
+				<div style='height: 10px;'></div>
+				<div class="panel panel-primary">
+					<div class="panel-heading" data-bind='text: listOfDeliverablesTitle'></div>
+					<div class="panel-body" id='deliverables-list-panel-body'>
+						<div id="list-deliverables"></div>
+					</div>
+				</div>
+			</div>
+			<div class='col-sm-12 col-md-8 deliverable-details'>
+				<div data-role="toolbar">
+					<button data-role='button' data-icon="edit" data-bind='click: editDeliverable, visible: deliverableIsEditable'><span data-bind="text: editButton"></span></button>
+					<button data-role='button' data-icon="check" data-bind='click: updateDeliverable, visible: isEditMode'><span data-bind="text: updateButton"></span></button>
+					<button data-role='button' data-icon="close" data-bind='click: cancelSave, visible: isEditMode'><span data-bind="text: cancelButton"></span></button>
+					<button data-role='button' data-icon="preview" data-bind="click: navigateToDetails, visible: isViewMode"><span data-bind="text: viewDetailsButton"></span></button>
+				</div>
+				<div style='height: 10px;'></div>
+				<div class="panel panel-primary" style='max-height:420px;overflow-y:scroll;' id='deliverable-meta-data'>
+					<div class="panel-heading" data-bind='text: deliverableDetailsTitle'></div>
+					<div class="panel-body">
+						<div data-bind='visible: isHelpMode'>
+							<p data-bind='text: helpLine1'></p>
+							<p data-bind='text: helpLine2'></p>
+						</div>
+						<div class="col-sm-12 form-horizontal" data-bind='visible: isViewEditMode'>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: title'></label></div>
+								<div class="col-sm-8">
+									<input id="inputTitle"
+									class="k-textbox form-control"
+									data-bind="value: deliverable.title, visible: isEditMode"
+									required name='Title' />
+									<div data-bind="text: deliverable.title, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: issueDate'></label></div>
+								<div class="col-sm-8">
+									<input id="datePicker" class="form-control" data-role='datepicker' data-bind='value: deliverable.issueDate, visible: isEditMode'
+									data-parseformats='["MM/dd/yyyy"]' required name='Issue Date' />
+									<span class="k-invalid-msg" data-for="Issue Date"></span>
+									<div data-bind="text: issueDateFormatted, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: status'></label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListStatus" data-role='dropdownlist' class="form-control"
+									data-bind='source: statuseSource,
+									value: deliverable.status,
+									visible: isEditMode' data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.status.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: type'></label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListType" data-role='dropdownlist' class="form-control" data-bind='source: typesSource, value: deliverable.type, visible: isEditMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.type.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: theme'></label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListTheme" data-role='dropdownlist' class="form-control" data-bind='source: themesSource, value: deliverable.theme, visible: isEditMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.theme.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<div class="col-sm-4"><label data-bind='text: securityClassification'></label></div>
+								<div class="col-sm-8">
+									<input id="dropdownListSecurityClassification" data-role='dropdownlist' class="form-control" data-bind='source: securityClassificationsSource, value: deliverable.securityClassification, visible: isEditMode'
+									 data-text-field="name" data-value-field="id" />
+									<div data-bind="text: deliverable.securityClassification.name, visible: isViewMode" class='form-control'></div>
+								</div>
+							</div>
+						</div>
+						<div id="sectionsSpace" class="col-sm-12" data-bind='visible: isViewEditMode'>
+							<div id="sections">
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+<!-- /.content -->
+</script>
+
+<script type="text/html" id="section-item-template">
+	<div class="panel panel-primary">
+		<div class="panel-heading">#= name #</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-12"> #= content #</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/StatusTypeDataModel.js"></script>
+<script src="js/datamodels/StatusDataModel.js"></script>
+<script src="js/datamodels/TransitionDataModel.js"></script>
+<script src="js/datamodels/WorkProcessDataModel.js"></script>
+<script src="js/datamodels/DeliverableDataModel.js"></script>
+<script src="js/datamodels/DeliverablesDataModel.js"></script>
+<script src="js/datamodels/SectionsDataModel.js"></script>
+<script src="js/datamodels/SecurityClassificationsDataModel.js"></script>
+<script src="js/datamodels/DeliverableTypesDataModel.js"></script>
+<script src="js/datamodels/DeliverableThemesDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>

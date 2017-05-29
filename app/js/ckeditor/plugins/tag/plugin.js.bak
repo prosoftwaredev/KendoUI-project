@@ -1,0 +1,61 @@
+CKEDITOR.plugins.add('tag', {
+    requires: 'widget',
+    listmode: false,
+    fetch: '',
+    dropdown: CKEDITOR.dom.element.createFromHtml('<ul class="foo"></ul>'),
+    init: function(editor) {
+      var pluginDirectory = this.path;
+      editor.addContentsCss( pluginDirectory + 'styles/tag.css' );
+      // listUsers cmd
+      var self = this;
+
+      editor.addCommand('listUsers', {
+        exec: function(editor) {
+
+
+          var req = new XMLHttpRequest();
+          req.open('GET', 'data/users.json', true);
+          req.onreadystatechange = function (e) {
+            if (req.readyState == 4) {
+              if(req.status == 200) {
+                console.log(req.responseText);
+                var li = CKEDITOR.dom.element.createFromHtml('<li>text</li>');
+                li.appendTo(self.dropdown);
+                self.dropdown.contentEditable = false;
+                editor.insertElement(self.dropdown);
+              }
+            }
+          };
+          req.send(null);
+
+        }
+      }); // end addCommand func
+
+
+      // register evt
+      editor.on('contentDom', function() {
+        var editable = editor.editable();
+
+        editable.attachListener(editable, 'keypress', function(e) {
+          if('@' === e.data.$.key) {
+            if(false === self.listmode) {
+              self.listmode = true;
+            }
+          } else if(0x1b === e.data.$.keyCode) {
+            self.listmode = false;
+            self.dropdown.hide();
+          }
+          if(true === self.listmode) {
+            if(0x20 <= e.data.$.charCode && 0x7e >= e.data.$.charCode) {
+              self.fetch += e.data.$.key;
+            }
+            editor.execCommand('listUsers');
+          } else {
+            self.fetch = '';
+          }
+        });
+      });
+
+    } // end init func
+
+});

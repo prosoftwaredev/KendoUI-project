@@ -1,0 +1,237 @@
+<link rel="stylesheet" href="css/phases.css" />
+ <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <ol class="breadcrumb">
+        <li><a href="#">Work process</a></li>
+		<li class="active">Phases</li>
+      </ol>
+      <h1>
+        My Work Processes
+        <span class="circle"><small>Phases</small></span>
+	  </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+<div class="box">
+	<div id="toolbar-phase"></div>
+</div>
+
+<div class="box with-border">
+  <div class="panel-heading">List of phases</div>
+	<div class="row">
+		<div class="col-sm-4 p-col-sm-4">
+			<div class="panel panel-primary">
+				<div class="panel-body">
+					<div class="item">
+						<button id="AddPhaseBtn" style="display: none;" class="k-button k-button-icontext" data-bind="visible:edit"><span class="k-icon k-i-add"></span>Add new phase</button>
+					</div>
+					<div id="list-phases" class="listview"></div>
+				</div>
+			</div>
+		</div>
+		<div id="phase-help-box" class="col-sm-8 p-col-sm-8">
+			<div class="panel panel-primary">
+				<div class="sub-panel-heading">Help</div>
+				<div class="panel-body">
+					<p>
+						To show phase details, click on the specified phase.
+					</p>
+					<p data-bind="visible:editMode">
+						To change phases order, drag and drop phases.
+					</p>
+					<p data-bind="visible:edit">
+						To add new phase, click on the &quot;<span class="k-icon k-i-add"/>Add new phase&quot; button.
+					</p>
+					<p data-bind="visible:editMode">
+						To remove a phase, click on the <span class="k-icon k-i-close-circle"/> button.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="phase-details-box" class="col-sm-8 p-col-sm-8 hidden">
+		</div>
+	</div>
+</div>
+</section>
+<!-- /.content -->
+<script type="text/x-kendo-template" id="templatePhaseItem">
+	<div class="item" id="#:id#">
+		<span class="k-icon k-i-move" data-bind="visible: editMode" title="Move"/>
+		<span>#:name#</span>
+		<a class="pull-right" data-bind="visible: editMode" onclick="removePhase(event);"><span class="k-icon k-i-close-circle" title="Remove"/></a>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templatePhaseDetails">
+	<div class="panel panel-primary">
+		<div class="panel-body">
+			<div class="alert alert-warning alert-dismissable" style="display:none;" data-bind="visible: used">
+				<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+				<span class="glyphicon glyphicon-alert"></span>
+				This phase can not be edited or removed. It contains at least one deliverable.
+			</div>
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-3"><label>Name:</label></div>
+					<div class="col-sm-9" data-bind="text: name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label>Gate keeper:</label></div>
+					<div class="col-sm-9" data-bind="text: user"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label>Start Date:</label></div>
+					<div class="col-sm-9" data-bind="text: startDate"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label>End Date:</label></div>
+					<div class="col-sm-9" data-bind="text: endDate"></div>
+				</div>
+			</div>
+			<div class="col-sm-12">
+				<div class="panel panel-default with-shadow">
+					<div class="sub-panel-heading">Workprocess Details</div>
+					<div class="panel-body">
+						<div id="workprocessSpace" class="col-sm-12">
+							<div id="workprocess">
+							</div>
+						</div>
+						<div id="workprocessEdition" class="col-sm-5">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templatePhaseEdit">
+	<div class="panel panel-primary with-shadow">
+		<div class="sub-panel-heading">Edit phase</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseName">Name</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" name="Name" id="phaseName" data-bind="value:name" required=""></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseStartDate">Gate keeper</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" id="phaseGateKeeper"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseStartDate">Start date</label></div>
+					<div class="col-sm-9"><input type="date" name="Start date"  class="form-control" id="phaseStartDate"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseEndDate">End date</label></div>
+					<div class="col-sm-9"><input type="date" name="End date" class="form-control" id="phaseEndDate"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="listWPCombo">Workprocess</label></div>
+					<div class="col-sm-9"><input class="form-control" id="listWPCombo" name="Workprocess" required></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templatePhaseAdd">
+	<div class="panel panel-primary">
+		<div class="sub-panel-heading">Add new phase</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseName">Name</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" id="phaseName" name="Name" placeholder="Enter a Name" required=""></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseStartDate">Gate keeper</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" id="phaseGateKeeper"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseStartDate">Start date</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" id="phaseStartDate" name="Start date" placeholder="Enter a start date"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="phaseEndDate">End date</label></div>
+					<div class="col-sm-9"><input type="text" class="form-control" id="phaseEndDate" name="End date" placeholder="Enter an end date"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-3"><label for="listWPCombo">Workprocess</label></div>
+					<div class="col-sm-9"><input class="form-control" id="listWPCombo" name="Workprocess" required></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateStatusDetails">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Status details</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-4"><label>Name:</label></div>
+					<div class="col-sm-8" data-bind="text: name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>Type:</label></div>
+					<div class="col-sm-8" data-bind="text: type.name"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>Editable:</label></div>
+					<div class="col-sm-4 "><input type="checkbox" disabled data-bind="checked: editable"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>Commentable:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: commentable"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script type="text/x-kendo-template" id="templateTransitionDetails">
+	<div class="panel panel-default with-shadow">
+		<div class="sub-panel-heading">Transition details</div>
+		<div class="panel-body">
+			<div class="col-sm-12 form-horizontal">
+				<div class="form-group">
+					<div class="col-sm-4"><label>Name:</label></div>
+					<div class="col-sm-8" data-bind="text: label"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>From:</label></div>
+					<div class="col-sm-8"data-bind="text: fromText"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-4"><label>To:</label></div>
+					<div class="col-sm-8" data-bind="text: toText"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>R</label></div>
+					<div class="col-sm-4 "><input type="checkbox" disabled data-bind="checked: R"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>A:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: A"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>C:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: C"></div>
+				</div>
+				<div class="form-group">
+					<div class="col-sm-8"><label>I:</label></div>
+					<div class="col-sm-4"><input type="checkbox" disabled data-bind="checked: I"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+<script>kendo.ui.progress($("#list-phases"), true);</script>
+<script src="js/datamodels/AbstractDataModel.js"></script>
+<script src="js/datamodels/StatusTypeDataModel.js"></script>
+<script src="js/datamodels/StatusDataModel.js"></script>
+<script src="js/datamodels/TransitionDataModel.js"></script>
+<script src="js/datamodels/WorkProcessDataModel.js"></script>
+<script src="js/datamodels/WorkProcessesDataModel.js"></script>
+<script src="js/datamodels/UsersDataModel.js"></script>
+<script src="js/datamodels/PhaseDataModel.js"></script>
+<script src="js/datamodels/PhasesDataModel.js"></script>
+<script src="js/controllers/PhasesController.js"></script>
